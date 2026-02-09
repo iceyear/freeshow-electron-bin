@@ -44,7 +44,6 @@ sha256sums=(
     'e08b8699c47bfa38365f7194d2dce675b3f36ef36235be993579db8647a8b307'
     '1fa1607ce5ba5f4d7f272ce788ae92eddc76d424a5228310daba13b77a034d5e'
 )
-
 _get_electron_version() {
     _elec_ver="$(strings "${srcdir}/opt/FreeShow/FreeShow" | grep '^Chrome/[0-9.]* Electron/[0-9]' | cut -d'/' -f3 | cut -d'.' -f1)"
     echo -e "The electron version is: \033[1;31m${_elec_ver}\033[0m"

@@ -107,7 +107,7 @@ package() {
     _icon_sizes=(16x16 24x24 32x32 48x48 64x64 128x128 256x256 512x512)
     for _icons in "${_icon_sizes[@]}"; do
         if [[ -f "${srcdir}/usr/share/icons/hicolor/${_icons}/apps/freeshow.png" ]]; then
-            install -Dm644 "${srcdir}/usr/share/icons/hicolor/${_icons}/apps/FreeShow.png" \
+            install -Dm644 "${srcdir}/usr/share/icons/hicolor/${_icons}/apps/freeshow.png" \
                 "${pkgdir}/usr/share/icons/hicolor/${_icons}/apps/${pkgname%-bin}.png"
         fi
     done

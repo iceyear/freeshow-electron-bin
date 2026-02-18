@@ -83,7 +83,7 @@ prepare() {
     sed -i -e "
         s|Exec=.*|Exec=${pkgname%-bin} %U|g
         s|Icon=.*|Icon=${pkgname%-bin}|g
-    " "${srcdir}/usr/share/applications/FreeShow.desktop"
+    " "${srcdir}/usr/share/applications/freeshow.desktop"
 
     asar e "${srcdir}/opt/FreeShow/resources/app.asar" "${srcdir}/app.asar.unpacked"
     find "${srcdir}/app.asar.unpacked" -type f -exec sed -i "s/process.resourcesPath/'\/usr\/lib\/${pkgname%-bin}'/g" {} +

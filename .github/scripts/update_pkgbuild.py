@@ -65,7 +65,13 @@ def detect_electron_major(asset_path: str) -> str:
             raise RuntimeError("Unable to locate data.tar.* in deb archive")
         extractor = "bsdtar" if shutil.which("bsdtar") else "tar"
         subprocess.run([extractor, "-xf", data_archives[0]], cwd=workdir, check=True)
-        binary_path = os.path.join(workdir, "opt", "FreeShow", "FreeShow")
+        binary_candidates = [
+            os.path.join(workdir, "opt", "FreeShow", "FreeShow"),
+            os.path.join(workdir, "opt", "FreeShow", "freeshow"),
+        ]
+        binary_path = next((path for path in binary_candidates if os.path.exists(path)), None)
+        if not binary_path:
+            raise RuntimeError("Unable to locate FreeShow binary in deb")
         output = subprocess.check_output(["strings", binary_path], text=True)
     match = re.search(r"Chrome/[0-9.]* Electron/([0-9]+)", output)
     if not match:

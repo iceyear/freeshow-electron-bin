@@ -45,7 +45,15 @@ sha256sums=(
     'e2e41b40c2efa8cd1792e1643afc605168893b4b1d74271e5202346751c7c14a'
 )
 _get_electron_version() {
-    _elec_ver="$(strings "${srcdir}/opt/FreeShow/FreeShow" | grep '^Chrome/[0-9.]* Electron/[0-9]' | cut -d'/' -f3 | cut -d'.' -f1)"
+    _binary_path="${srcdir}/opt/FreeShow/FreeShow"
+    if [[ ! -f "${_binary_path}" ]]; then
+        _binary_path="${srcdir}/opt/FreeShow/freeshow"
+    fi
+    if [[ ! -f "${_binary_path}" ]]; then
+        echo "Unable to find FreeShow binary to detect Electron version"
+        return 1
+    fi
+    _elec_ver="$(strings "${_binary_path}" | grep '^Chrome/[0-9.]* Electron/[0-9]' | cut -d'/' -f3 | cut -d'.' -f1)"
     echo -e "The electron version is: \033[1;31m${_elec_ver}\033[0m"
 }
 

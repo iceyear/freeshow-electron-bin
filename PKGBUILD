@@ -101,7 +101,7 @@ package() {
         cp -Pr --no-preserve=ownership "${srcdir}/opt/FreeShow/resources/slideshow" \
             "${pkgdir}/usr/lib/${pkgname%-bin}/slideshow"
     fi
-    install -Dm644 "${srcdir}/usr/share/applications/FreeShow.desktop" \
+    install -Dm644 "${srcdir}/usr/share/applications/freeshow.desktop" \
         "${pkgdir}/usr/share/applications/${pkgname%-bin}.desktop"
 
     _icon_sizes=(16x16 24x24 32x32 48x48 64x64 128x128 256x256 512x512)
